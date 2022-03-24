@@ -52,8 +52,3 @@ class riinfo:
     def search_and_load(self, mat):
         fn = self.search_for_material(mat)
         return(self.load_material(fn))
-        
-# # Create a new refractiveindex.info class
-# riidb = rii.riinfo
-# # Start a Database Search for the abbreviation
-# data = riidb.search_and_load(' ')
