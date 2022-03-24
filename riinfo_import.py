@@ -1,16 +1,15 @@
 from io import StringIO
 import numpy as np
-import loadyaml_url
-class riinfo_db:
+import loadyaml_url as lyurl
+
+class riinfo:
     def __init__(self, **kwargs):
         self.index_loaded = False
-        pass
     
-    def load_complete_db_index(self, **kwargs):
+    def load_complete_db_index(self):
         print('Loading database index')
         default_url = "https://raw.githubusercontent.com/polyanskiy/refractiveindex.info-database/master/database/library.yml"
-        self.riinfo_db_lib_url=kwargs.get( 'url',default_url)
-        self.db_lib=loadyaml_url(self.riinfo_db_lib_url)
+        self.db_lib=lyurl.loadyaml_url(default_url)
         self.index_loaded = True
         
     def search_for_material(self, mat):
@@ -45,10 +44,8 @@ class riinfo_db:
 
     def load_material(self,path_to_material):
         loadurl="https://raw.githubusercontent.com/polyanskiy/refractiveindex.info-database/master/database/data/"
-        loadurl+=path_to_material
-        # data = urllib.request.urlopen(loadurl).read().decode('utf8')
-        
-        data = loadyaml_url(loadurl)
+        loadurl+=path_to_material        
+        data=lyurl.loadyaml_url(loadurl)
         
         return np.genfromtxt(StringIO(data['DATA'][0]['data']))
     
@@ -56,3 +53,7 @@ class riinfo_db:
         fn = self.search_for_material(mat)
         return(self.load_material(fn))
         
+# # Create a new refractiveindex.info class
+# riidb = rii.riinfo
+# # Start a Database Search for the abbreviation
+# data = riidb.search_and_load(' ')
