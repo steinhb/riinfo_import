@@ -1,6 +1,6 @@
 from io import StringIO
 import numpy as np
-import urllib.request  # the lib that handles the url stuff
+import urllib.request
 import yaml
 
 # Load a yaml file from url
