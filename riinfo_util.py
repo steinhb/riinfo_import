@@ -20,4 +20,4 @@ def lambda_to_unit(l, unit = 'nm'):
     elif unit == 'cm-1':
         return 1e-2/l/1e-9
     else:
-        return l
+        raise TypeError("unit: %s not recognized" % unit)
